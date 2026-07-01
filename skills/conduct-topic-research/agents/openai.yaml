@@ -1,0 +1,4 @@
+interface:
+  display_name: "课题系统调研"
+  short_description: "系统检索研究现状、追踪前沿证据并识别可信创新空白的完整工作流"
+  default_prompt: "使用 $conduct-topic-research 系统调研我的课题，并给出检索策略、证据矩阵和研究空白。"
