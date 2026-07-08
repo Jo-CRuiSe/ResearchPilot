@@ -12,8 +12,10 @@ ResearchPilot 是一个开源的 [Agent Skill](https://agentskills.io/)，用于
 - 记录准确的检索式、平台、筛选条件、日期与筛选决策。
 - 使用结构化表格比较论文，而不是生成彼此孤立的摘要。
 - 综合共识、条件性结论、分歧、失败与前沿信号。
+- 使用 Mermaid 绘制领域地图、方法路线、发展脉络、证据关系和研究空白定位。
 - 从存在性、重要性、可行性、独特性与可证伪性等方面检验候选研究空白。
-- 使用 Markdown 和 CSV 模板创建可复用的调研工作区。
+- 使用 Markdown、CSV、可视化和文献归档模板创建可复用的调研工作区。
+- 将合法可访问的开放全文、预印本、作者版、机构仓储文件或公开技术报告下载到主题目录，并记录不可下载来源。
 
 ## 示例
 
@@ -117,16 +119,24 @@ python3 skills/conduct-topic-research/scripts/init_research_workspace.py \
 ```text
 research/<topic-slug>/
 ├── README.md
+├── report.md
 ├── scope.md
 ├── keywords.md
 ├── search-log.csv
 ├── literature-matrix.md
 ├── evidence-matrix.csv
 ├── synthesis.md
-└── gaps.md
+├── gaps.md
+├── visuals/
+│   └── README.md
+└── literature/
+    ├── README.md
+    ├── papers/
+    ├── metadata/
+    └── unavailable.md
 ```
 
-已有文件会被保留：脚本只创建缺失的文件。
+`report.md` 是面向用户的主 Markdown 交付文件；其他文件保存可追溯的检索、证据、可视化草稿和文献归档。已有文件会被保留：脚本只创建缺失的文件。
 
 ## 仓库结构
 
@@ -159,6 +169,7 @@ ResearchPilot/
 - 可选的初始化脚本需要 Python 3.10+。
 - 时效性调研需要宿主智能体具备互联网搜索、学术数据库或连接器访问能力。
 - 数据库覆盖范围取决于用户的订阅与可用工具。
+- 文献下载能力取决于宿主智能体的网络、数据库权限和合法访问范围；技能不会绕过付费墙、登录限制或版权限制。
 - 该工作流支持系统调研，但除非用户明确采用 PRISMA 等特定正式综述标准，否则不会声称符合这些标准。
 - 新颖性结论受已记录的数据库、检索词、语言、日期与可访问来源所限。
 
@@ -198,8 +209,10 @@ The included skill is named $conduct-topic-research and supports Chinese and Eng
 - Records exact queries, platforms, filters, dates, and screening decisions.
 - Compares papers in structured tables instead of producing isolated summaries.
 - Synthesizes consensus, conditional findings, disagreements, failures, and frontier signals.
+- Uses Mermaid diagrams for domain maps, method flows, development timelines, evidence relationships, and research-gap positioning.
 - Tests candidate gaps for existence, importance, feasibility, distinctiveness, and falsifiability.
-- Creates a reusable research workspace with Markdown and CSV templates.
+- Creates a reusable research workspace with Markdown, CSV, visualization, and literature-archive templates.
+- Downloads lawfully accessible open full texts, preprints, accepted manuscripts, institutional repository files, or public technical reports into the topic folder, and records unavailable sources.
 
 ## Example
 
@@ -303,16 +316,24 @@ It creates:
 ```text
 research/<topic-slug>/
 ├── README.md
+├── report.md
 ├── scope.md
 ├── keywords.md
 ├── search-log.csv
 ├── literature-matrix.md
 ├── evidence-matrix.csv
 ├── synthesis.md
-└── gaps.md
+├── gaps.md
+├── visuals/
+│   └── README.md
+└── literature/
+    ├── README.md
+    ├── papers/
+    ├── metadata/
+    └── unavailable.md
 ```
 
-Existing files are preserved: the script only creates missing files.
+`report.md` is the primary user-facing Markdown deliverable. The other files preserve traceable searches, evidence, visualization drafts, and literature archives. Existing files are preserved: the script only creates missing files.
 
 ## Repository structure
 
@@ -345,6 +366,7 @@ ResearchPilot/
 - The optional initializer requires Python 3.10+.
 - Current-state research requires the host agent to have internet search, scholarly database, or connector access.
 - Database coverage depends on the user's subscriptions and available tools.
+- Literature download support depends on the host agent's network, database permissions, and lawful access scope; the skill does not bypass paywalls, login restrictions, or copyright limits.
 - The workflow supports systematic investigation, but it does not claim compliance with a specific formal review standard such as PRISMA unless the user explicitly applies that standard.
 - Novelty conclusions are bounded by the recorded databases, search terms, languages, dates, and accessible sources.
 

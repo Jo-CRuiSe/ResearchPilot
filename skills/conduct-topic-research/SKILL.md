@@ -64,6 +64,8 @@ Search sources appropriate to the field and access available:
 
 Use live search or connected databases for actual current-state research. Never imply that memory alone is a database search. Record the exact query, platform, filters, and date. Prefer primary sources for factual and novelty claims; use reviews for orientation and discovery.
 
+For papers and technical reports, attempt lawful full-text acquisition after screening metadata. Download only openly accessible files such as open-access publisher PDFs, preprints, accepted manuscripts, author-hosted copies, institutional repository files, or public technical reports. Store downloaded files under `research/<topic-slug>/literature/papers/`, store metadata or citation exports under `research/<topic-slug>/literature/metadata/`, and record paywalled, inaccessible, or uncertain-access items in `research/<topic-slug>/literature/unavailable.md` with the DOI/URL, access date, and reason. Do not bypass access controls or imply that a paywalled source was fully read when only metadata or an abstract was available.
+
 ### 4. Screen and extract consistently
 
 Define inclusion and exclusion rules before deep reading. Screen title/abstract first, then inspect full text for central items. Deduplicate versions and distinguish preprint, conference, and journal versions.
@@ -98,6 +100,16 @@ Organize findings around questions, methods, evidence, and disagreement—not on
 
 Triangulate important claims across independent source types. Cite the source closest to each claim and mark inference explicitly.
 
+Use visual synthesis whenever it clarifies structure or reasoning. For any report that covers field structure, method families, time development, evidence conflict, citation relationships, or research gaps, include 2-4 Mermaid diagrams in `report.md` and, when useful, mirror or expand them under `visuals/`. Prefer:
+
+- `mindmap` for domain maps, concept maps, and taxonomy.
+- `flowchart` for research pipelines, evidence chains, screening decisions, and method workflows.
+- `timeline` for historical development and frontier waves.
+- `graph` for relationships among papers, datasets, methods, institutions, benchmarks, or claims.
+- `quadrantChart` or a compact table for value/feasibility positioning of candidate gaps.
+
+Every diagram must be evidence-aware: label inferred groupings as inference, cite the sources or matrix rows that support important relationships, and avoid decorative diagrams that add no analytical value.
+
 ### 6. Test research gaps and novelty
 
 Generate candidate gaps across problem, theory, method, data, evaluation, population/context, deployment, and conflicting evidence. For every candidate, test:
@@ -129,13 +141,15 @@ Match depth to the request. A useful report normally contains:
 8. Recommended next research questions or experiments.
 9. Source list with stable links and access dates where appropriate.
 
+When producing files, the primary user-facing deliverable is `research/<topic-slug>/report.md`. Supporting files such as scope notes, keyword matrices, search logs, evidence tables, visual drafts, and downloaded literature should live beside it in the same topic folder. Do not scatter deliverables in the project root.
+
 If files are requested, keep them in the current project's established research/docs structure. If no structure exists, run:
 
 ```bash
 python3 scripts/init_research_workspace.py --topic "<topic>" --root "<project-root>"
 ```
 
-Populate the generated files rather than creating duplicate notes elsewhere.
+Populate the generated files rather than creating duplicate notes elsewhere. Downloaded literature must be organized under `literature/`; visual source snippets or diagram notes must be organized under `visuals/`.
 
 ## Enforce a quality gate
 
@@ -149,5 +163,8 @@ Before delivery, verify:
 - contradictory evidence is represented fairly;
 - primary and secondary evidence are not conflated;
 - search limitations and inaccessible material are explicit;
+- `report.md` exists when files are requested and contains the final integrated Markdown report;
+- relevant Mermaid diagrams appear in `report.md` for field maps, development, evidence relationships, or gaps;
+- downloaded literature, citation metadata, and unavailable-source notes are organized under `literature/`;
 - candidate innovation is compared with its nearest prior art;
 - recommendations separate evidence, inference, and speculation.

@@ -2,18 +2,6 @@
 
 Use this reference for substantial rapid scans, systematic investigations, and novelty checks.
 
-## Contents
-
-1. [Scope card](#1-scope-card)
-2. [Concept matrix](#2-concept-matrix)
-3. [Source portfolio](#3-source-portfolio)
-4. [Search log schema](#4-search-log-schema)
-5. [Evidence matrix schema](#5-evidence-matrix-schema)
-6. [Discipline adapters](#6-discipline-adapters)
-7. [Gap ledger](#7-gap-ledger)
-8. [Saturation and completion](#8-saturation-and-completion)
-9. [Recommended synthesis language](#9-recommended-synthesis-language)
-
 ## 1. Scope card
 
 Complete this card before searching:
@@ -73,7 +61,60 @@ Choose sources by discipline rather than using every database mechanically.
 
 Use at least two independent discovery routes for high-confidence coverage: for example, keyword search plus citation chaining, or a bibliographic database plus a field-specific repository.
 
-## 4. Search log schema
+## 4. Full-text acquisition and file organization
+
+After title/abstract screening, attempt lawful full-text access for included central sources.
+
+Access priority:
+
+1. DOI or publisher page for canonical metadata, version, and licensing.
+2. Open-access publisher PDF when explicitly available.
+3. arXiv, OpenReview, PubMed Central, SSRN, HAL, institutional repositories, government or standards portals, and other legitimate open repositories.
+4. Author homepages, lab pages, or project pages that host a public manuscript.
+5. Metadata-only record when no lawful full text is available.
+
+Download only files that are openly accessible or that the user is authorized to access. Do not bypass paywalls, login gates, robots restrictions, or license limits. If access is unavailable or rights are uncertain, record the item in `literature/unavailable.md` with the attempted source, date, reason, and whether only metadata or abstract evidence was used.
+
+Store files under:
+
+```text
+research/<topic-slug>/literature/
+├── papers/
+├── metadata/
+└── unavailable.md
+```
+
+Use stable file names:
+
+```text
+sNN-first-author-year-short-title-version.ext
+```
+
+Examples:
+
+```text
+s03-vaswani-2017-attention-is-all-you-need-conference.pdf
+s03-vaswani-2017-attention-is-all-you-need-arxiv.pdf
+s12-smith-2024-benchmark-survey-metadata.json
+```
+
+Deduplicate by DOI, arXiv ID, title, authors, year, and venue. Preserve distinct versions only when they differ materially, and label the version in both the file name and the literature index.
+
+## 5. Visualization selection
+
+Choose Mermaid diagrams according to the research question:
+
+| Analytical need | Preferred diagram | Use when |
+|---|---|---|
+| Domain structure or taxonomy | `mindmap` | The user needs a quick map of branches, concepts, and boundaries |
+| Method pipeline or evidence logic | `flowchart` | The synthesis depends on screening, causal chains, workflows, or decision paths |
+| Historical development | `timeline` | The field has meaningful waves, milestones, or frontier shifts |
+| Relationships among papers, methods, datasets, or claims | `graph` | The analysis compares influence, reuse, contradiction, or convergence |
+| Research-gap prioritization | `quadrantChart` or table | Gaps differ by importance, feasibility, evidence strength, or risk |
+
+Prefer two to four diagrams in `report.md` for a substantial report. Add more only if each diagram answers a distinct analytical question. Label inferred groupings and connect important diagram relationships to source IDs, evidence-matrix rows, or citations.
+
+## 6. Search log schema
 
 Record one row per search:
 
@@ -83,7 +124,7 @@ date,platform,query,filters,result_count,screened_count,included_count,notes
 
 Do not fabricate result counts when a platform does not expose them. Record `not reported`.
 
-## 5. Evidence matrix schema
+## 7. Evidence matrix schema
 
 Record one row per distinct study or authoritative source:
 
@@ -94,7 +135,7 @@ comparison,outcomes,key_result,limitations,evidence_strength,relevance,doi_or_ur
 
 Use transparent evidence labels such as `high / medium / low / unclear` and explain the criteria for the domain. Do not calculate a universal score that disguises judgment.
 
-## 6. Discipline adapters
+## 8. Discipline adapters
 
 ### Experimental, clinical, and behavioral research
 
@@ -112,7 +153,7 @@ Check requirements, operating conditions, maturity level, safety, standards, man
 
 Check theoretical lineage, archive/corpus selection, positionality, translation, historical context, interpretive alternatives, representativeness, causal identification where claimed, and whether concepts travel across cultures.
 
-## 7. Gap ledger
+## 9. Gap ledger
 
 For each proposed gap, maintain both supporting and defeating evidence:
 
@@ -128,7 +169,7 @@ For each proposed gap, maintain both supporting and defeating evidence:
 | Decisive test | What experiment or analysis could resolve it? |
 | Confidence | High, medium, or low, with rationale |
 
-## 8. Saturation and completion
+## 10. Saturation and completion
 
 Consider the map provisionally saturated when:
 
@@ -141,7 +182,7 @@ Consider the map provisionally saturated when:
 
 Saturation supports bounded completeness, not universal completeness.
 
-## 9. Recommended synthesis language
+## 11. Recommended synthesis language
 
 Prefer:
 
